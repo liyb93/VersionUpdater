@@ -22,9 +22,6 @@ let package = Package(
         .target(
             name: "VersionUpdater",
             path: "Sources"
-//            resources: [
-//                .process("Resources")
-//            ]
         ),
     ]
 )

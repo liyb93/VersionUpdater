@@ -41,17 +41,18 @@ private extension VersionUpdater {
         DispatchQueue.global().async { [weak self] in
             let versions = version.components(separatedBy: ".").compactMap { NSInteger($0) }
             let onlineVersions = app.version.components(separatedBy: ".").compactMap { NSInteger($0) }
-            for version in versions {
-                for onlineVersion in onlineVersions {
-                    if onlineVersion > version {
+            for index in 0..<onlineVersions.count {
+                let online = onlineVersions[index]
+                if versions.count > index {
+                    let version = versions[index]
+                    if online > version {
                         DispatchQueue.main.async {
                             self?.completion?(app)
                         }
                         return
-                    } else if onlineVersion < version {
-                        print("当前版本太高")
-                        return
                     }
+                } else {
+                    return
                 }
             }
         }
