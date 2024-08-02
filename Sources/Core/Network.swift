@@ -23,7 +23,8 @@ struct Network {
     }
 
     static func request(bundleId: String, completion: @escaping Completion) {
-        guard let url = URL(string: baseURL.appendingFormat("?bundleId=%@&country=%@", bundleId, regionCode)) else {
+        let date = Int(Date().timeIntervalSince1970)
+        guard let url = URL(string: baseURL.appendingFormat("?bundleId=%@&country=%@&date=%zi", bundleId, regionCode, date)) else {
             completion(nil)
             return
         }
