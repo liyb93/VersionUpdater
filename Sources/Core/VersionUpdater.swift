@@ -50,6 +50,8 @@ private extension VersionUpdater {
                             self?.completion?(app)
                         }
                         return
+                    } else if online < version {
+                        return
                     }
                 } else {
                     return
